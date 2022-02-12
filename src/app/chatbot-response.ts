@@ -13,7 +13,6 @@ export class ChatbotResponse {
     }
 
     GetResponse(msg:string): Observable<string> {
-        
         return this.httpClient.get<string>(ConfigService.getConfig() + this.GetParam(msg)); 
     }
 
@@ -24,11 +23,18 @@ export class ChatbotResponse {
         } else if (this.IsGoodbye(msg)) {
             param = 'greetings/goodbye';
         } else if (this.IsTool(msg)) {
-            param = 'tool/msg';
+            param = 'tools/' + msg;
         } else {
             param = 'greetings/angryGoodbye';
         }
+        console.log(param); 
         return param; 
+    }
+
+    GetToolResponse(response: string): string {
+        let jsonObj: any = JSON.parse(response); 
+        let tool: Tool = <Tool>jsonObj; 
+        return 'You can get our ' + tool.tool + ' for only ' + tool.price + '! Buy now: ' + tool.url;
     }
 
     IsTool(msg: string) {
@@ -52,3 +58,9 @@ export class ChatbotResponse {
         return false; 
     }
 }
+
+export interface Tool {
+    tool: string, 
+    url: string, 
+    price: number
+  }

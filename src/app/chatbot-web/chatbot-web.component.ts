@@ -51,8 +51,12 @@ export class ChatbotWebComponent implements OnInit {
   makeResponse(): void {
     this.chatbotResponse.GetResponse(this.msg).subscribe(response => 
       {
+        let chatbotMsg = response; 
+        if (response.includes('tool')) {
+          chatbotMsg = this.chatbotResponse.GetToolResponse(response); 
+        }
         const item = new FormControl({
-          msg: response, 
+          msg: chatbotMsg, 
           speaker: 'Chatbot'
       }); 
       this.items.push(item); 
@@ -69,3 +73,5 @@ export interface ChatItem {
   msg: string; 
   speaker: string; 
 }
+
+
