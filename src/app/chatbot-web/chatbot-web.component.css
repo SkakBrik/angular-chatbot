@@ -1,0 +1,35 @@
+.content {
+    max-width: 50%;
+}
+
+.chatbot_speaking{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.msg_chatbot {
+    font-size: large;
+    color: blue;
+}
+
+.speaker_chatbot {
+    font-size: small;
+    color: blue;
+}
+
+.custumer_speaking {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.msg_customer {
+    font-size: large;
+    color: green;
+}
+
+.speaker_customer {
+    font-size: small;
+    color: green;
+}

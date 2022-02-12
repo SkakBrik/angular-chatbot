@@ -1,0 +1,20 @@
+<div class="content" [formGroup]="chatHistory">
+    <ng-container formArrayName="items">
+        <ng-container *ngFor="let item of items.controls; let i = index">
+            <div [formGroupName]="i">
+                <div class="chatbot_speaking" *ngIf="item.value.speaker=='Chatbot'">
+                    <label class="msg_chatbot">{{item.value.msg}} </label>
+                    <label class="speaker_chatbot">&ensp;-{{item.value.speaker}}</label>
+                </div>
+                <div class="customer_speaking" *ngIf="item.value.speaker=='You'">
+                    <label class="msg_customer">{{item.value.msg}}</label>
+                    <label class="speaker_customer">&ensp;-{{item.value.speaker}}</label>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+    <mat-form-field > 
+        <input matInput placeholder="Write message" [formControl]="custumerMsg"> 
+        <button type="button" (click)="send()">Send</button>
+    </mat-form-field>
+</div>
