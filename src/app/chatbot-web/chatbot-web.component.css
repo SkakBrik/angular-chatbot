@@ -2,6 +2,11 @@
     max-width: 50%;
 }
 
+.send_message {
+    display: flex;
+    flex-direction: row;
+}
+
 .chatbot_speaking{
     display: flex;
     justify-content: flex-end;

@@ -32,9 +32,19 @@ export class ChatbotResponse {
     }
 
     GetToolResponse(response: string): string {
+        let returnValue: string = '';
         let jsonObj: any = JSON.parse(response); 
         let tool: Tool = <Tool>jsonObj; 
-        return 'You can get our ' + tool.tool + ' for only ' + tool.price + '! Buy now: ' + tool.url;
+        if (tool.stock > 0) {
+            if (response.includes('stock') || response.includes('many')) {
+                returnValue = 'Currently we have ' + tool.stock + ' ' + tool.tool + ' in stock for the low price of ' + tool.price + ' per ' + tool.tool + '! Buy now at ' + tool.url;
+            } else {
+                returnValue = 'You can get our ' + tool.tool + ' for only ' + tool.price + '! Buy now at ' + tool.url;
+            }
+        } else {
+            returnValue = 'I\'m sorry! Currently we do not have any ' + tool.tool + ' in stock.'
+        }
+        return returnValue; 
     }
 
     IsTool(msg: string) {
@@ -62,5 +72,6 @@ export class ChatbotResponse {
 export interface Tool {
     tool: string, 
     url: string, 
-    price: number
+    price: number, 
+    stock: number
   }

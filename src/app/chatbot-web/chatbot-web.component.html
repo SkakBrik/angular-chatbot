@@ -14,7 +14,9 @@
         </ng-container>
     </ng-container>
     <mat-form-field > 
-        <input matInput placeholder="Write message" [formControl]="custumerMsg"> 
-        <button type="button" (click)="send()">Send</button>
+        <div class="send_message">
+            <input matInput placeholder="Write message" [formControl]="custumerMsg"> 
+            <button type="button" (click)="send()">Send</button>
+        </div>
     </mat-form-field>
 </div>
